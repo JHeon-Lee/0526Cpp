@@ -104,10 +104,40 @@ public:
 	Vector(int x, int y, int z) : x(x), y(y), z(z) {}
 
 	// ´ÜÇ× +
-	Vector operator+()
+	Vector operator+() const
 	{
 		// return Vector{ x, y, z };
 		return *this;
+	}
+
+	Vector operator-() const
+	{
+		return Vector{ -x,-y,-z };
+	}
+
+	Vector operator+(const Vector& v) const
+	{
+		return Vector{ x + v.x, y + v.y, z + v.z };
+	}
+
+	Vector operator*(int v) const
+	{
+		return Vector{ x * v, y * v, z * v };
+	}
+
+	Vector& operator++()
+	{
+		x += 1; // ++x;
+		y += 1;
+		z += 1;
+		return *this;
+	}
+
+	Vector& operator++(int)
+	{
+		Vector temp = *this;
+		++(*this);
+		return temp;
 	}
 
 private:
